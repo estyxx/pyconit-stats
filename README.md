@@ -1,5 +1,15 @@
 # PyCon Italia Stats
 
-    poetry install
+This repository contains data analysis and visualization for PyCon Italia conference attendance.
 
-    poetry run jupyter notebook
+## Setup
+
+This project uses [uv](https://github.com/astral-sh/uv) for package management.
+
+```bash
+# Install uv if you don't have it
+curl -sSf https://astral.sh/uv/install.sh | bash
+
+# Install dependencies
+uv pip install -e .
+```

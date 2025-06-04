@@ -1,18 +1,59 @@
-[tool.poetry]
+
+[project]
 name = "pyconit-stats"
 version = "0.1.0"
-description = ""
-authors = ["Ester Beltrami <beltrami.ester@gmail.com>"]
+description = "PyCon Italia Conference Stats and Analytics"
 readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+authors = [{ name = "Ester Beltrami", email = "ester@pycon.it" }]
+dependencies = [
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "requests",
+    "python-dotenv",
+    "jupyter",
+    "seaborn",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-notebook = "^7.1.3"
-matplotlib = "^3.8.4"
-pandas = "^2.2.2"
-python-dotenv = "^1.0.1"
-requests = "^2.32.3"
+[project.optional-dependencies]
+dev = ["ruff", "mypy", "pytest", "pytest-cov"]
+
+[tool.ruff]
+select = ["ALL"]
+ignore = [
+    # pragma: alphabetize
+    "T201", #https://docs.astral.sh/ruff/rules/print/
+]
+line-length = 89
+target-version = "py313"
+fix = true
+unfixable = []
+extend-exclude = [
+    # pragma: alphabetize
+    ".DS_Store",
+    ".pytest_cache",
+    ".uv-dep",
+    "__pycache__",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    # pragma: alphabetize
+    "F401", # https://docs.astral.sh/ruff/rules/unused-import/
+
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["stats"]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
